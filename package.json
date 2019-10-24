@@ -1,0 +1,17 @@
+{
+  "name": "pdfreader",
+  "version": "1.0.0",
+  "description": "initial project to fetch, download and read a pdf",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js "
+  },
+  "author": "vato",
+  "license": "ISC",
+  "dependencies": {
+    "bereich": "^1.0.0",
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^2.2.228"
+  }
+}
