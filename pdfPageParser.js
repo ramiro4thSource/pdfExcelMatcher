@@ -12,7 +12,7 @@ const pdfjs = require('pdfjs-dist');
 /**
 Function to get all pages from pdf document. Results are returned in array.
 @param {string} pdfName - Document name.
-@return {pageObject[]} 
+@return {Promise} Ap 
 */
 function getAllPages(pdfName) {
     var loadingTask = pdfjs.getDocument(pdfName)
