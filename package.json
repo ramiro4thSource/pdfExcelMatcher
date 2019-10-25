@@ -12,6 +12,7 @@
   "dependencies": {
     "bereich": "^1.0.0",
     "pdf-parse": "^1.1.1",
-    "pdfjs-dist": "^2.2.228"
+    "pdfjs-dist": "^2.2.228",
+    "xlsx": "^0.15.1"
   }
 }
