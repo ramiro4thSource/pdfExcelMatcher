@@ -1,14 +1,5 @@
 const pdfjs = require('pdfjs-dist');
-
-/**
- * 
- * @class pageObject
- * @property {String} text
- * @property {String} page
- */
-
  
-
 /**
 Function to get all pages from pdf document. Results are returned in array.
 @param {string} pdfName - Document name.
