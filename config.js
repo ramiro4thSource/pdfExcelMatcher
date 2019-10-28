@@ -1,3 +1,4 @@
 module.exports= {
-    excelDocName:'expedientes.xlsx'    
+    inputExcelDocName:'expedientes.xlsx',
+    outputExcelDocName:'Resultados.xlsx'    
 }

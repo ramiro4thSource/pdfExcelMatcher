@@ -1,9 +1,10 @@
 //import getAllPages from './pdfPageParser';
 var getAllPages = require('./pdfPageParser').getAllPages;
 var excelUtils = require('./excelReader');
+var config= require('./config');
 
 //Importing docName from config
-var docName = require('./config').excelDocName;
+var docName = config.inputExcelDocName;
 const pdfNameDocument = "2019-10-16_1.pdf";
 
 const sheetName="Sheet1"
@@ -13,7 +14,7 @@ const columnName="A"
 var results = getMatches(pdfNameDocument, excelUtils.getColumnValues(docName,sheetName,columnName));
 
 results.then(matches => {    
-    excelUtils.writeExcel(excelUtils.writeRow(matches,"Expediente","Páginas"),"Resultados.xlsx");
+    excelUtils.writeExcel(excelUtils.writeRow(matches,"Expediente","Páginas"),config.outputExcelDocName);
     matches.forEach(page => {
         console.log(`KeyWord: ${page.keyWord} -- Page: ${page.pageNumber}`);
     })
