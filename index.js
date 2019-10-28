@@ -7,15 +7,18 @@ var docName = require('./config').excelDocName;
 const pdfNameDocument = "2019-10-16_1.pdf";
 
 const sheetName="Sheet1"
-const columnName="D"
+const columnName="A"
 
 
 var results = getMatches(pdfNameDocument, excelUtils.getColumnValues(docName,sheetName,columnName));
 
-results.then(matches => {
+results.then(matches => {    
+    excelUtils.writeExcel(excelUtils.writeRow(matches,"Expediente","Páginas"),"Resultados.xlsx");
     matches.forEach(page => {
         console.log(`KeyWord: ${page.keyWord} -- Page: ${page.pageNumber}`);
     })
+}).catch(error=>{
+    console.log(error);
 })
 
 
@@ -38,9 +41,9 @@ function getMatches(pdfNameDocument, keyWords) {
                 for (var word in keyWords) {
                     if (page.text.includes(keyWords[word])) {
                         results.page = {};
-                        results.page.pageNumber = page.pageNumber;
-                        results.page.content = page.text;
                         results.page.keyWord = keyWords[word];
+                        results.page.pageNumber = page.pageNumber;
+                        //results.page.content = page.text;                        
                         results.push(results.page);
                     }
                 }
