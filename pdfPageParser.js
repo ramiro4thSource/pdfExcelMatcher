@@ -1,11 +1,13 @@
 const pdfjs = require('pdfjs-dist');
- 
+const fs = require('fs');
+
+
 /**
 Function to get all pages from pdf document. Results are returned in array.
 @param {string} pdfName - Document name.
 @return {Promise} Ap 
 */
-function getAllPages(pdfName) {
+function pdfToObject(pdfName) {
     var loadingTask = pdfjs.getDocument(pdfName)
     return new Promise((resolve, reject) => loadingTask.promise.then(function (pdf) {
         var pages = [];
@@ -42,10 +44,10 @@ function getAllPages(pdfName) {
             resolve(pages);
         }
     }, error => {
-        reject(`A1- Error while reading PDF document: ${error}`);
-        console.log(reason);
+        reject(error);
+        console.log(error);
     })
     )
 }
 
-module.exports = { getAllPages };
+module.exports = { pdfToObject };
