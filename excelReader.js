@@ -16,10 +16,10 @@ function writeExcel(table, documentName) {
     XLSX.utils.book_append_sheet(wb, ws, "Resultados");
 
     /* output format determined by filename */
-    try{
-    XLSX.writeFile(wb, documentName);
+    try {
+        XLSX.writeFile(wb, documentName);
     }
-    catch(exc){
+    catch (exc) {
         throw new Error(`There was an error writing document ${exc}`);
     }
 }
@@ -33,17 +33,22 @@ function writeExcel(table, documentName) {
  * @returns {Array} String array .
  */
 function getColumnValues(documentName, sheetName, columnName) {
-    var workbook = XLSX.readFile(documentName);
-    let worksheet = workbook.Sheets[sheetName];
-    let wordsArray = [];
-    for (var cells in worksheet) {
-        if (cells.includes(columnName)) {
-            if (worksheet[cells].v !== worksheet[worksheet["!ref"].split(":")[0]].v.trim()) {
-                wordsArray.push(worksheet[cells].v.trim());
+    try {
+        var workbook = XLSX.readFile(documentName);
+        let worksheet = workbook.Sheets[sheetName];
+        let wordsArray = [];
+        for (var cells in worksheet) {
+            if (cells.includes(columnName)) {
+                if (worksheet[cells].v !== worksheet[worksheet["!ref"].split(":")[0]].v.trim()) {
+                    wordsArray.push(worksheet[cells].v.trim());
+                }
             }
         }
+        return wordsArray;
+    } catch (error) {
+        throw(error);
     }
-    return wordsArray;
+
 }
 
 
@@ -56,8 +61,8 @@ function getColumnValues(documentName, sheetName, columnName) {
  * @returns Bidimensional array
  */
 function writeRow(object, ...headers) {
-    var table = [];    
-    if (headers.length>0) table.push(headers);
+    var table = [];
+    if (headers.length > 0) table.push(headers);
     for (var key in object) {
         var rows = [];
         if (object.hasOwnProperty(key)) {
